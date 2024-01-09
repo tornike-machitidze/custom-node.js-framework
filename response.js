@@ -5,9 +5,15 @@ class Response {
     this.response = response;
   }
 
-  json(json) {
+  setHeader(header, value) {
+    this.response.setHeader(header, value);
+  }
+
+  json(object) {
+    if (typeof object !== 'object') return console.log('Invalid data type to convert it in to JSON');
+
     this.response.setHeader('Content-Type', 'application/json');
-    this.response.end(json);
+    this.response.end(JSON.stringify(object));
   }
 
   send(text) {
